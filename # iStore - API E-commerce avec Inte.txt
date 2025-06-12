@@ -1,0 +1,200 @@
+# iStore - API E-commerce avec Interface Web
+
+Une API complète pour boutique en ligne avec interface utilisateur moderne, développée avec Express.js et vanilla JavaScript.
+
+## 🚀 Fonctionnalités
+
+- **API REST complète** : CRUD pour produits, utilisateurs et commandes
+- **Interface web moderne** : Boutique responsive avec panier d'achat
+- **Authentification** : Middleware de sécurité pour les routes protégées
+- **Validation** : Middleware de validation des données
+- **Statistiques** : Dashboard avec métriques détaillées
+- **Base de données simulée** : Stockage en mémoire pour développement rapide
+
+## 📁 Structure du projet
+
+```
+istore-ecommerce/
+├── server.js                 # Serveur principal
+├── package.json              # Dépendances et scripts
+├── README.md                 # Documentation
+├── routes/                   # Routes API
+│   ├── produits.js          # CRUD produits
+│   ├── users.js             # CRUD utilisateurs
+│   └── commandes.js         # CRUD commandes
+├── middleware/               # Middlewares
+│   ├── auth.js              # Authentification
+│   └── validation.js        # Validation des données
+├── models/                   # Modèles de données
+│   └── data.js              # Base de données simulée
+├── utils/                    # Utilitaires
+│   └── helpers.js           # Fonctions helper
+└── public/                   # Interface web
+    └── index.html           # Application frontend
+```
+
+## 🛠️ Installation
+
+1. **Cloner ou créer le projet**
+```bash
+mkdir istore-ecommerce
+cd istore-ecommerce
+```
+
+2. **Initialiser npm et installer les dépendances**
+```bash
+npm init -y
+npm install express cors
+npm install -D nodemon
+```
+
+3. **Créer la structure de dossiers**
+```bash
+mkdir routes middleware models utils public
+```
+
+4. **Créer les fichiers** (copier le contenu fourni dans chaque fichier)
+
+5. **Placer l'interface HTML**
+```bash
+# Placer le fichier "index 4.html" dans public/index.html
+cp "index 4.html" public/index.html
+```
+
+## 🚀 Démarrage
+
+```bash
+# Mode développement (redémarrage automatique)
+npm run dev
+
+# Mode production
+npm start
+```
+
+Le serveur démarre sur `http://localhost:3000`
+
+## 📖 Utilisation
+
+### Interface Web
+- **Boutique** : `http://localhost:3000/shop`
+- **API Documentation** : `http://localhost:3000`
+
+### API Endpoints
+
+#### Produits
+- `GET /api/produits` - Liste tous les produits
+- `GET /api/produits/:id` - Détails d'un produit
+- `POST /api/produits` - Créer un produit (validation requise)
+- `PUT /api/produits/:id` - Modifier un produit
+- `DELETE /api/produits/:id` - Supprimer un produit
+
+**Paramètres de requête pour GET /api/produits :**
+- `?categorie=Tech` - Filtrer par catégorie
+- `?prix_max=500` - Prix maximum
+- `?recherche=iPhone` - Recherche par nom
+- `?page=1&limit=10` - Pagination
+
+#### Utilisateurs
+- `GET /api/users` - Liste tous les utilisateurs
+- `GET /api/users/:id` - Détails d'un utilisateur
+- `POST /api/users` - Créer un utilisateur
+- `PUT /api/users/:id` - Modifier un utilisateur
+- `DELETE /api/users/:id` - Supprimer un utilisateur
+
+#### Commandes
+- `GET /api/commandes` - Liste toutes les commandes
+- `GET /api/commandes/:id` - Détails d'une commande
+- `GET /api/commandes/user/:userId` - Commandes d'un utilisateur
+- `POST /api/commandes` - Créer une commande
+- `PUT /api/commandes/:id` - Modifier le statut d'une commande
+
+#### Statistiques
+- `GET /api/stats` - Statistiques générales
+- `GET /api/admin/stats` - Statistiques détaillées (authentification requise)
+
+### Authentification
+
+Pour accéder aux routes protégées, ajouter le header :
+```
+Authorization: Bearer secret-token
+```
+
+### Exemples de requêtes
+
+**Créer un produit :**
+```bash
+curl -X POST http://localhost:3000/api/produits \
+  -H "Content-Type: application/json" \
+  -d '{
+    "nom": "iPhone 16",
+    "prix": 1099,
+    "stock": 25,
+    "categorie": "Tech",
+    "description": "Nouveau iPhone avec IA"
+  }'
+```
+
+**Créer une commande :**
+```bash
+curl -X POST http://localhost:3000/api/commandes \
+  -H "Content-Type: application/json" \
+  -d '{
+    "userId": 1,
+    "produits": [
+      {"produitId": 1, "quantite": 1},
+      {"produitId": 3, "quantite": 2}
+    ]
+  }'
+```
+
+## 🔧 Configuration
+
+### Variables d'environnement (optionnel)
+```bash
+PORT=3000                    # Port du serveur
+NODE_ENV=development         # Mode de développement
+```
+
+### Personnalisation
+
+- **Données initiales** : Modifier `models/data.js`
+- **Validation** : Ajuster `middleware/validation.js`
+- **Interface** : Personnaliser `public/index.html`
+- **Authentification** : Modifier `middleware/auth.js`
+
+## 🎨 Interface Web
+
+L'interface inclut :
+- **Page d'accueil** : Grille de produits avec filtres
+- **Page produit** : Détails et ajout au panier
+- **Panier** : Gestion des articles et checkout
+- **Design responsive** : Compatible mobile/desktop
+- **Animations** : Transitions fluides et hover effects
+
+## 📊 Fonctionnalités avancées
+
+- **Pagination** automatique des résultats
+- **Filtres dynamiques** par catégorie et prix
+- **Recherche** en temps réel
+- **Gestion du stock** automatique lors des commandes
+- **Validation** des données côté serveur
+- **Gestion d'erreurs** complète
+- **Logging** des requêtes
+
+## 🚧 Prochaines étapes
+
+- [ ] Base de données persistante (MongoDB/PostgreSQL)
+- [ ] Authentification JWT complète
+- [ ] Upload d'images pour les produits
+- [ ] Système de paiement (Stripe)
+- [ ] Notifications en temps réel
+- [ ] Tests unitaires et d'intégration
+- [ ] Déploiement (Docker, Heroku, etc.)
+
+## 🤝 Contribution
+
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou proposer des améliorations.
+
+## 📄 Licence
+
+MIT License - Libre d'utilisation pour vos projets.
